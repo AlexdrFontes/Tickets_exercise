@@ -7,7 +7,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-unless Rails.env.production?
+# unless Rails.env.production?
   # let's create some data to fill the database
 
 
@@ -95,4 +95,4 @@ Event.destroy_all
   #   email: 'alexandrefontes90@yahoo.com')
   # ticket_3.event_id = 3
   # ticket_3.save!
-end
+# end
