@@ -1,0 +1,37 @@
+.jumbotron
+  .container
+    = image_tag @event.logo, class: 'event-logo'
+    h1.display-3 = @event.name
+    p
+      // NOTE should we have a helper that allow us to display the dates in
+      // a different way? we could have many scenarios such as:
+      //  * one day event
+      //  * an event that spans between months
+      //  * an event that spans between years
+      //  * an event of multiple months (say what!?)
+      time datetime="#{@event.start_at}" = l @event.start_at, format: '%d %B, %Y'
+      '
+      |-
+      '
+      time datetime="#{@event.end_at}" = l @event.end_at, format: '%d %B, %Y'
+
+.container
+  .row
+    .col-md-8
+      h2 About
+      p = @event.description
+
+      h3 Tickets Sold
+      p =  @event.tickets_sold
+
+      h3 Tickets Available
+      p = @event.number_of_tickets_available - @event.tickets_sold
+      - if @event.number_of_tickets_available - @event.tickets_sold <= 0
+        p = link_to 'No more Tickets :(', root_path(),class: 'btn btn-secondary'
+      - else
+        p = link_to 'Buy Tickets »', new_event_ticket_path(@event), class: 'btn btn-secondary'
+    .col-md-4
+      h3 Location
+      p = @event.venue.address
+
+
